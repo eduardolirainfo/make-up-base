@@ -1,3 +1,10 @@
+// fazendo requisição
+(async () => {
+  let response = await fetch("data/products.json");
+  console.log(await response.json());
+})();
+
+
 //EXEMPLO DO CÓDIGO PARA UM PRODUTO
 function productItem(product) {
   const item = `<div class="product" data-name="NYX Mosaic Powder Blush Paradise" data-brand="nyx" data-type="bronzer" tabindex="508">
