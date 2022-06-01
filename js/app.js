@@ -1,4 +1,3 @@
-// fazendo requisição
 (async () => {
   let response = await fetch("data/products.json");
   console.log(await response.json());
@@ -21,7 +20,6 @@ function productItem(product) {
 </div>`;
 }
 
-//EXEMPLO DO CÓDIGO PARA OS DETALHES DE UM PRODUTO
 function loadDetails(product) {
 
   let details = ["brand","price","product_type","category","rating"]
@@ -34,4 +32,37 @@ function loadDetails(product) {
         </div>
       </div>`
   }).join("") 
+}
+
+function sortProducts(products, sortType){
+  switch (sortType) {
+    case "Melhores Avaliados":
+      return products.sort((a, b) =>
+        a.rating > b.rating ? -1 : a.rating < b.rating ? 1 : 0
+      );
+    case "Menores Preços":
+      return products.sort((a, b) =>
+        parseFloat(a.price) > parseFloat(b.price)
+          ? 1
+          : parseFloat(a.price) < parseFloat(b.price)
+          ? -1
+          : 0
+      );
+    case "Maiores Preços":
+      return products.sort((a, b) =>
+        parseFloat(a.price) > parseFloat(b.price)
+          ? -1
+          : parseFloat(a.price) < parseFloat(b.price)
+          ? 1
+          : 0
+      );
+    case "A-Z":
+      return products.sort((a, b) =>
+        a.name > b.name ? 1 : a.name < b.name ? -1 : 0
+      );
+    case "Z-A":
+      return products.sort((a, b) =>
+        a.name > b.name ? -1 : a.name < b.name ? 1 : 0
+      );
+  }
 }
